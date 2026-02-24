@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+>
+    <!-- 
+        TEST SUITES:
+        Defines where PHPUnit should look for tests.
+        We separate them into 'Unit' (isolated logic) and 'Feature' (integrations/endpoints).
+    -->
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Feature">
+            <directory>tests/Feature</directory>
+        </testsuite>
+    </testsuites>
+
+    <!-- 
+        SOURCE CODE COVERAGE:
+        Tells PHPUnit which files to include when calculating 'Code Coverage' percentage.
+    -->
+    <source>
+        <include>
+            <directory>app</directory>
+        </include>
+    </source>
+
+    <!-- 
+        ENVIRONMENT VARIABLES:
+        These settings OVERRIDE your .env file during tests.
+        This ensures tests run in a safe, isolated environment.
+    -->
+    <php>
+        <!-- APP_ENV=testing: Disables certain production-only features (like real payments) -->
+        <env name="APP_ENV" value="testing"/>
+        <env name="APP_MAINTENANCE_DRIVER" value="file"/>
+        
+        <!-- BCRYPT_ROUNDS=4: Speeds up tests by using weak password hashing (safe for local tests) -->
+        <env name="BCRYPT_ROUNDS" value="4"/>
+        
+        <env name="BROADCAST_CONNECTION" value="null"/>
+        <env name="CACHE_STORE" value="array"/>
+
+        <!-- 
+            DATABASE ISOLATION:
+            We use 'sqlite' and ':memory:' so that tests create a fresh database in RAM.
+            This is 100x faster and doesn't wipe your real Laragon database! 🚀
+        -->
+        <env name="DB_CONNECTION" value="sqlite"/>
+        <env name="DB_DATABASE" value=":memory:"/>
+
+        <!-- MAIL_MAILER=array: Prevents tests from actually sending emails to the internet -->
+        <env name="MAIL_MAILER" value="array"/>
+        
+        <!-- QUEUE_CONNECTION=sync: Forces background jobs to run immediately for easier testing -->
+        <env name="QUEUE_CONNECTION" value="sync"/>
+        
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="PULSE_ENABLED" value="false"/>
+        <env name="TELESCOPE_ENABLED" value="false"/>
+        <env name="NIGHTWATCH_ENABLED" value="false"/>
+    </php>
+</phpunit>

@@ -169,7 +169,7 @@ erDiagram
 
 While the current MVP meets all requirements, here are the professional improvements I would implement in a production scaling phase:
 
-1.  **💳 Subscription & Payment Integration**: Monetize the platform by integrating **Laravel Cashier** (Stripe or Paytabs) to handle monthly subscriptions, tiered pricing, and automated invoicing.
+1.  **💳 Subscription & Payment Integration**: Monetize the platform by integrating **Laravel Cashier** (Stripe or Paddle) to handle monthly subscriptions, tiered pricing, and automated invoicing.
 2.  **🔐 Enhanced Security**: Implement Two-Factor Authentication (2FA) for administrators and social login (OAuth) for students via **Laravel Socialite**.
 3.  **� Production Dockerization**: Create a multi-stage production-ready `Dockerfile` and `docker-compose.yml` optimized for performance (OPcache, JIT) and security.
 4.  **🎮 Gamification**: Implement a points and badges system using a polymorphic relationship to reward student consistency and engagement.
